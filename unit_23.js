@@ -116,15 +116,14 @@ for (let i = 0; i < radioButton.length; i++) {
 // Task 10 ============================================
 /*  Проект. Дана переменная card - корзина. Добавьте кнопку b-10 и функцию t10, которые сохраняют card в LS.*/
 
-const card = {
+let card = '';
+card = {
     "apple": 3,
     "grape": 2
-    // "kivi": 7
 }
-
 const column = ['Название товара', ' ', 'Количество'];
-
 let out = document.querySelector('.out-10');
+
 function t10() {
     localStorage.setItem('card', JSON.stringify(card));
     t11();
@@ -134,9 +133,8 @@ function t11() {
     out.innerHTML = '';
     let c = localStorage.getItem('card', JSON.stringify(card));
     c = JSON.parse(c);
-    console.log(c);
     let table = document.createElement('table');
-
+    let sumGoods = 0;
     // формирование строки назавания колонок
     let tr = document.createElement('tr');
     for (let j = 0; j < column.length; j++) {
@@ -188,11 +186,13 @@ function t11() {
             tdFoot.innerHTML = 'Общее количество';
         }
         if (j == 2) {
-            // tdFoot.innerHTML = ;
+            for (let key in card) {
+                sumGoods += card[key];
+            }
+            tdFoot.innerHTML = sumGoods;
         }
         table.appendChild(trFoot);
     }
-
     out.appendChild(table);
     // повесим событие на все кнопки "+"
     let btnsPlus = document.querySelectorAll('.btnPlus');
@@ -204,24 +204,25 @@ function t11() {
             t10();
         }
     }
-
     // повесим событие на все кнопки "-"
     let btnsMinus = document.querySelectorAll('.btnMinus');
     for (let i = 0; i < btnsMinus.length; i++) {
         btnsMinus[i].onclick = function () {
             let sumMinus = card[this.getAttribute('data')] - 1;
             if (sumMinus == -1) {
-                return
+                delete card[this.getAttribute('data')];
+                return t10();
             }
             else {
                 card[this.getAttribute('data')] = sumMinus;
-                console.log(card);
                 t10();
             }
-
         }
     }
-
+    if (sumGoods == 0) {
+        localStorage.removeItem('card');
+        table.innerHTML = 'Корзина пуста';
+    }
 }
 document.querySelector('.b-10').onclick = t10;
 

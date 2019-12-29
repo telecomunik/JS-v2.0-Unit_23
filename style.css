@@ -48,7 +48,7 @@ th, tr {
     text-align: center;
     width: 25%;
     height: 67px;
-    border: 1px solid green;
+    /* border: 1px solid green; */
 }
 
 td {
@@ -56,11 +56,11 @@ td {
     width: 25%;
     height: 40px;
     font-size: 20px;
-    border: 1px solid red;
+    /* border: 1px solid red; */
 }
 
 td > button {
-    background-color: red;
+    background-color: yellow;
     font-size: 20px;
 }
 
