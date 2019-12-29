@@ -35,3 +35,37 @@ section {
 .active-img {
     border: 3px solid black;
 }
+
+table {
+    font-family: sans-serif;
+    border-collapse: separate;
+    border-spacing: 5px;
+    max-width: 1000px;
+    /* border: 2px solid black; */
+}
+
+th, tr {
+    text-align: center;
+    width: 25%;
+    height: 67px;
+    border: 1px solid green;
+}
+
+td {
+    text-align: center;
+    width: 25%;
+    height: 40px;
+    font-size: 20px;
+    border: 1px solid red;
+}
+
+td > button {
+    background-color: red;
+    font-size: 20px;
+}
+
+.foot {
+    font-weight: 600;
+}
+
+
